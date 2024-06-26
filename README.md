@@ -1,12 +1,10 @@
 # Single-cell RNA-seq datas integration
 
 Internship project to integrate differents datasets of single-cell RNA-seq. These scripts can process datas in the form of one cell per file (often Smart-seq) or in format of 10X (3 files : barcodes.tsv, genes.tsv, matrix.tsv). It could take all the technologies of single cell but in this 2 formats.
-I also analyze datasets. I take 6 datasets to perform a standard because of poor number cells. I worked on scRNA-seq from mouse embryos at stage E4.5 (peri-implantation) and I was interested in Lefty1 to analyze cells which differentially expressed this genes which have a important role in the establishement of anterio-posterior axis.
 
 ## Installation and Requirements
 
 You have to download these directory and put your datas in a directory named Data. For format Smart_seq, named a dir **NumberOfDataset_Author_counts** and for 10X, **NumberOfDataset_Author_10X**. See the scheme below which explained the required organisation of the directory.
-
 
 These scripts use the packages scanpy. For installing scanpy, you can use this command line in your terminal (on vs code terminal)
 They also use packages tkfilebrowser and pywin32 (if you have Windows).
@@ -22,6 +20,7 @@ They also use packages tkfilebrowser and pywin32 (if you have Windows).
 - `apply_filters.py`: function to apply filters on anndata object on the minimum of genes per cell, the minimum of cells per genes and the maximum of % mitochondrial genes, generate a violin plot and ask the user if he want to save the filtered object (_filterd.h5ad)
 - `gene_names.tab`: ouput of `extraction_gene_name.sh` (in the folder Appendix scripts) with in column 1 gene ids and column 2 gene names
 - `create_anndata_object.py`: function to create anndata object to stock datas, generate a violin plot
+- `create_umaps.py`: function to create umaps
 - `generation_matrix.py`: function to create counts matrix from datasets with 1 cell per file, with columns represent cells and rows corespond to genes
 - `main.py`: main script which call function and interact with the user
 - `merge.py`: function to merge multiple anndata object, so it merged datasets, use `apply_filters.py`, `create_anndata_object.py`, `generation_matrix.py`, `main.py`, `merge.py`
