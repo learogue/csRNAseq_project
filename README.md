@@ -3,82 +3,76 @@
 Internship project to integrate differents datasets of single-cell RNA-seq. These scripts can process datas in the form of one cell per file (often Smart-seq) or in format of 10X (3 files : barcodes.tsv, genes.tsv, matrix.tsv). It could take all the technologies of single cell but in this 2 formats.
 I also analyze datasets. I take 6 datasets to perform a standard because of poor number cells. I worked on scRNA-seq from mouse embryos at stage E4.5 (peri-implantation) and I was interested in Lefty1 to analyze cells which differentially expressed this genes which have a important role in the establishement of anterio-posterior axis.
 
-## Installation
+## Installation and Requirements
 
 You have to download these directory and put your datas in a directory named Data. For format Smart_seq, named a dir **NumberOfDataset_Author_counts** and for 10X, **NumberOfDataset_Author_10X**. See the scheme below which explained the required organisation of the directory.
 
-  ![dir organisation](Images/organisation_scheme.png)
+  ![dir organisation](Images/organisation.png)
 
-These scripts use the packages scanpy. For installing scanpy, you can use this command line in your terminal (on vs code)
+These scripts use the packages scanpy. For installing scanpy, you can use this command line in your terminal (on vs code terminal)
+They also use packages tkfilebrowser and pywin32
 
 ```
   pip install scanpy
+  pip install tkfilebrowser
+  pip install --upgrade pywin32
 ```
 
 ## Contents
 
 - `apply_filters.py`: function to apply filters on anndata object on the minimum of genes per cell, the minimum of cells per genes and the maximum of % mitochondrial genes, generate a violin plot and ask the user if he want to save the filtered object (_filterd.h5ad)
-- `extraction_gene_name.sh`: script used to generate `gene_names.tab` to have gene ids and gene names in order to replace gene ids by names in matrix
-- `gene_names.tab`: ouput of `extraction_gene_name.sh` with in column 1 gene ids and column 2 gene names
+- `gene_names.tab`: ouput of `extraction_gene_name.sh` (in the folder Appendix scripts) with in column 1 gene ids and column 2 gene names
 - `create_anndata_object.py`: function to create anndata object to stock datas, generate a violin plot
 - `generation_matrix.py`: function to create counts matrix from datasets with 1 cell per file, with columns represent cells and rows corespond to genes
 - `main.py`: main script which call function and interact with the user
 - `merge.py`: function to merge multiple anndata object, so it merged datasets, use `apply_filters.py`, `create_anndata_object.py`, `generation_matrix.py`, `main.py`, `merge.py`
-- `modify_ids_names.py` : script in case of concatenation of files from Smart-seq2 already performed, and the 1st column correspond to gene IDs, this script change gene ids in gene names and need of `gene_names.tab`
 
 ## Data Processing Script
 
-This script interacts with the user to process and merge single-cell RNA sequencing datasets (Smart-seq2 or 10X). Follow the prompts to generate matrices, create objects, filter data, and merge objects.
+This script interacts with the user to process and analyze single-cell RNA sequencing datasets (Smart-seq2 or 10X). Follow the process to generate matrices, create objects, filter data, merge objects and create UMAPs.
 
 ## Usage
 
-Run the script and follow the prompts to select the desired operation.
+Execute `main.py` script and follow the processus to select the desired operation.
 
 ### Main Menu Options
 
+At the beginning, a window appear and show folders in Processing. Here, you can create a folder or select an existing folder to save procssing files for a better tracability.
+
 1. **Smart-seq2**
 2. **10X**
-3. **Both Smart-seq2 and 10X**
+3. **Apply filters**
 4. **Merge existing objects only**
+5. **Create UMAPs**
 
-### Smart-seq2 (answer 1 or 3)
+### Smart-seq2 format objects creation
 
-1. **Generation of matrices in the case of a file per cell**
+1. **Generation of matrix in the case of a file per cell**
     - Displays the list of folders containing counts (e.g., `1_Deng_counts` in the Data folder). This applies to datasets with one cell per file in tabular format.
-    - The script asks for the number of directories to process.
-    - Enter the folder names one by one.
-    - The script executes the `generation_matrix` function from the `generation_matrix.py` script to merge all files of the dataset into a matrix with genes in rows and cells in columns, replacing gene identifiers with gene names. The resulting file will be saved in the `Data_matrix_Smart_seq2` folder (e.g., `matrix_1_Deng.tab`). If matrices already exist, enter `0` when asked for the number of files to process.
+    - The script executes the `generation_matrix` function from the `generation_matrix.py` script to merge all files of the dataset into a matrix with genes in rows and cells in columns, replacing gene identifiers with gene names. The resulting file will be saved in the `Data_matrix_Smart_seq2` folder (e.g., `matrix_1_Deng.tab`). If matrices already exist, click on Cancel if your files already in matrix format.
 
 2. **Creation of objects (AnnData)**
-    - Displays the list of matrices.
-    - The script asks for the number of objects to create from the matrices.
+    - Show folder containing objects
+    - Choose one or more objects
     - Creates objects in the `Objects` folder (e.g., `object_1_Deng_ori.h5ad`) and generates a violin plot in the `Plots` folder (e.g., `Plots_1_Deng`) using the `create_anndata_object` function from the `create_anndata_object.py` script.
 
-  ![anndata object](Images/anndata_object_image.png)
+  ![anndata object](Images/anndata_object.png)
 
-### 10X (answer 2 or 3)
+### 10X format objects creation
 
-1. **Create objects**
-    - Displays the list of 10X folders.
-    - The script asks for the number of objects to create.
-    - Enter the file names one by one.
-    - Creates objects using the `create_anndata_object` function (similar to Smart-seq2).
+- Choose one or more folders for process 10X
+- Creates objects using the `create_anndata_object` function (similar to Smart-seq2).
 
 ### Filtering Data
 
-1. **Ask if the user wants to filter objects**
-    - If yes, displays the list of objects.
-    - The script asks for the number of objects to filter.
-    - Enter the object names one by one.
-    - Executes the `apply_filters` function from the `apply_filters.py` script:
-        - Displays the number of cells and genes before filtering.
-        - Requests filter parameters (minimum genes per cell, minimum cells per gene, and maximum percentage of mitochondrial genes).
-        - Displays the number of cells and genes after filtering and saves a violin plot with the filter parameters in the name.
-        - Asks if the user wants to save the filtered object (e.g., `object_1_Deng_filtered.h5ad`).
-> [!WARNING]
-> If a filtered object already exists, it will be overwritten by the new one.
+- Choose one or more objects to add filters
+- Requests filter parameters (minimum genes per cell, minimum cells per gene, and maximum percentage of mitochondrial genes).
+- Executes the `apply_filters` function from the `apply_filters.py` script:
+- Displays the number of cells and genes before and after filtering 
+- Asks if the user wants to save the filtered object (e.g., `object_1_Deng_filtered_1.h5ad`) and saves a violin plot with the filter parameters in the name. Moreover, a log file is created with all the parameters choosen to a better tracability.
 
-### Merging Objects (answer 4 or yes at the end of object creation)
+
+### Merging Objects
 
 1. **Ask if the user wants to merge objects**
     - If Smart-seq2 and/or 10X were processed (answer 1, 2, or 3), ask if the user wants to merge objects. Otherwise, proceed to merge only existing objects (answer 4).
