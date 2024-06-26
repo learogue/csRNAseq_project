@@ -35,7 +35,7 @@ This script interacts with the user to process and analyze single-cell RNA seque
 
 Execute `main.py` script and follow the processus to select the desired operation.
 
-### Main Menu Options
+## Main Menu Options
 
 At the beginning, a window appear and show folders in Processing. Here, you can create a folder or select an existing folder to save procssing files for a better tracability.
 
@@ -71,19 +71,21 @@ At the beginning, a window appear and show folders in Processing. Here, you can 
 - Displays the number of cells and genes before and after filtering 
 - Asks if the user wants to save the filtered object (e.g., `object_1_Deng_filtered_1.h5ad`) and saves a violin plot with the filter parameters in the name. Moreover, a log file is created with all the parameters choosen to a better tracability.
 
-
 ### Merging Objects
 
-1. **Ask if the user wants to merge objects**
-    - If Smart-seq2 and/or 10X were processed (answer 1, 2, or 3), ask if the user wants to merge objects. Otherwise, proceed to merge only existing objects (answer 4).
-    - Displays the list of objects.
-    - The script asks for the number of objects to merge.
-    - Enter the object names one by one.
-    - Merges objects using the `merge` function from the `merge.py` script and saves the merged object with the names of all included objects in the filename (e.g., `object_1_Deng_filtered_2_Chen_filtered_3_Mohammed_filtered_4_Nowo_merged_6_Posfai_filtered_10_Arg_filtered.h5ad`).
-  
+  - Displays objects folder
+  - Choose one or more objects to merge (the best is to merge one object by one, not an already merge with another)
+  - Merges objects using the `merge` function from the `merge.py` script and saves the merged object with the names of all included objects in the filename (e.g., `object_1_Deng_filtered_2_Chen_filtered_3_Mohammed_filtered_4_Nowo_merged_6_Posfai_filtered_10_Arg_filtered.h5ad`).
 
+### Create UMAPs
+  - Displays objects folder
+  - Choose one object to create UMAPs.
+  - Choose parameters : theta, number of clusters and a file containing list of genes (one per line)
+  - Creates 2 UMAPs in Analysis/folder_name_at_the_beginning and a log file for tracability using `create_umaps.py`.
+  - Ask if you want to create other UMAPs
+  - If you want to change more precise parameters you can directly modify in the script (number of neighbors, number of PCs, show PCA plot, show Elbow plot
+  
 ## Notes
 
 - Ensure all necessary scripts (`generation_matrix.py`, `create_anndata_object.py`, `apply_filters.py`, `merge.py` and `main.py`) are available in the script directory.
-- Review filter parameters and merged object names to avoid overwriting important data.
 
