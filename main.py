@@ -17,7 +17,7 @@ if not os.path.isdir('Processing'):
 # User chooses the processing directory
 root = tk.Tk()
 root.withdraw()  # To not display the main window
-messagebox.showinfo('Information', 'Choose one directory for processing data or create one (icon in high right, write the name and enter). Click on OK to continue.')
+messagebox.showinfo('Information', 'Choose one directory for processing data or create one (icon in top right, write the name and enter). Click on OK to continue.')
 processing_dir = tkfilebrowser.askopendirname(initialdir = 'Processing/', title = 'Choose working directory or create it')
 root.destroy()
 
@@ -89,7 +89,7 @@ if 1 in selected_options:
     root.withdraw()
     
     # Information message 
-    messagebox.showinfo('Information', 'Choose folder(s) to create a matrix if you have one file per cell, otherwise select nothing and click on Cancel')
+    messagebox.showinfo('Information', 'Choose folder(s) (_counts) to create a matrix if you have one file per cell, otherwise select nothing and click on Cancel')
     
     # User choose directories
     l_dir = list(tkfilebrowser.askopendirnames(initialdir = 'Data/', title = 'Choose directories for Smart-seq2'))
@@ -97,7 +97,7 @@ if 1 in selected_options:
     # Generate matrices for each specified directory
     if l_dir != []:
         for path in l_dir:
-            generation_matrix(path)  # Call the function to generate the matrix
+            generation_matrix(path.split('\\')[-1])  # Call the function to generate the matrix
         messagebox.showinfo('Information', 'Matrix generation finished')
     root.destroy()
 

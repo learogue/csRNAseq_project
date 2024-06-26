@@ -51,5 +51,3 @@ def generation_matrix(path):
 
     # Save the final merged DataFrame to a tab-separated file in the Data_matrix_Smart_seq2 directory
     merged_df.to_csv('Data_matrix_Smart_seq2/' + name_file, sep = '\t', index = False)
-
-    print('Done')
