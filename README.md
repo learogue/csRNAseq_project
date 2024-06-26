@@ -9,7 +9,7 @@ You have to download these directory and put your datas in a directory named Dat
 
 
 These scripts use the packages scanpy. For installing scanpy, you can use this command line in your terminal (on vs code terminal)
-They also use packages tkfilebrowser and pywin32
+They also use packages tkfilebrowser and pywin32 (if you have Windows).
 
 ```
   pip install scanpy
@@ -33,6 +33,9 @@ This script interacts with the user to process and analyze single-cell RNA seque
 ## Usage
 
 Execute `main.py` script and follow the processus to select the desired operation.
+```
+  python .\main.py
+```
 
 ## Main Menu Options
 
