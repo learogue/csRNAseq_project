@@ -7,7 +7,6 @@ I also analyze datasets. I take 6 datasets to perform a standard because of poor
 
 You have to download these directory and put your datas in a directory named Data. For format Smart_seq, named a dir **NumberOfDataset_Author_counts** and for 10X, **NumberOfDataset_Author_10X**. See the scheme below which explained the required organisation of the directory.
 
-  ![dir organisation](Images/organisation.png)
 
 These scripts use the packages scanpy. For installing scanpy, you can use this command line in your terminal (on vs code terminal)
 They also use packages tkfilebrowser and pywin32
