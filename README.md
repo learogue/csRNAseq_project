@@ -11,8 +11,12 @@ They also use packages tkfilebrowser and pywin32 (if you have Windows).
 
 ```
   pip install scanpy
+  pip install harmonypy
+  pip install igraph
+  pip install louvain
   pip install tkfilebrowser
-  pip install --upgrade pywin32
+  pip install pywin32
+  
 ```
 
 ## Contents
