@@ -1,4 +1,5 @@
 import os
+import re
 import tkinter as tk
 from tkinter import messagebox
 import tkfilebrowser
@@ -97,7 +98,7 @@ if 1 in selected_options:
     # Generate matrices for each specified directory
     if l_dir != []:
         for path in l_dir:
-            generation_matrix(path.split('\\')[-1])  # Call the function to generate the matrix
+            generation_matrix(re.split(r'[/\\]', path)[-1])  # Call the function to generate the matrix
         messagebox.showinfo('Information', 'Matrix generation finished')
     root.destroy()
 
@@ -109,7 +110,7 @@ if 1 in selected_options:
 
     # Create Anndata objects for each specified matrix file
     for file in l_file:
-        create_anndata_object(file.split('\\')[-1], 'Smart-seq2', processing_dir)  # Call the function to create Anndata object
+        create_anndata_object(re.split(r'[/\\]', file)[-1], 'Smart-seq2', processing_dir)  # Call the function to create Anndata object
     messagebox.showinfo('Information', 'Object(s) creation finished')
     root.destroy()
 
@@ -123,7 +124,7 @@ if 2 in selected_options:
 
     # Create Anndata objects for each specified 10X directory
     for dir in l_dir:
-        create_anndata_object(dir.split('\\')[-1], '10X', processing_dir)
+        create_anndata_object(re.split(r'[/\\]', dir)[-1], '10X', processing_dir)
     messagebox.showinfo('Information', 'Object(s) creation finished')
     root.destroy()
 
@@ -136,7 +137,7 @@ if 3 in selected_options:
 
     # Apply filters to each specified Anndata object
     for obj in l_obj:
-        apply_filters(obj.split('\\')[-1], processing_dir)
+        apply_filters(re.split(r'[/\\]', obj)[-1], processing_dir)
     messagebox.showinfo('Information', 'Finished')
     root.destroy()
 
@@ -150,7 +151,7 @@ if 4 in selected_options:
     # Take only the object name
     l_obj = []
     for obj in l_path_obj:
-        l_obj.append(obj.split('\\')[-1])
+        l_obj.append(re.split(r'[/\\]', obj)[-1])
 
     # Merge the specified objects
     merge(l_obj, processing_dir)
@@ -163,14 +164,14 @@ if 5 in selected_options:
     root.withdraw()
     messagebox.showinfo('Information', 'Step of creating UMAPs')
     obj = tkfilebrowser.askopenfilename(initialdir = processing_dir+'/Objects/', title = 'Choose one object for UMAP')
-    create_umaps(obj.split('\\')[-1], processing_dir.split('\\')[-1])
+    create_umaps(re.split(r'[/\\]', obj)[-1], re.split(r'[/\\]', processing_dir)[-1])
     messagebox.showinfo('Information', 'UMAP created')
 
     # Ask if the user wants to create another UMAP
     rep_loop = messagebox.askyesno('Create Another UMAP', 'Do you want to create another UMAP?')
     while rep_loop:
         obj = tkfilebrowser.askopenfilename(initialdir = processing_dir+'/Objects/', title = 'Choose one object for UMAP')
-        create_umaps(obj.split('\\')[-1], processing_dir.split('\\')[-1])
+        create_umaps(re.split(r'[/\\]', obj)[-1], re.split(r'[/\\]', processing_dir)[-1])
         messagebox.showinfo('Information', 'UMAP created')
         rep_loop = messagebox.askyesno('Create Another UMAP', 'Do you want to create another UMAP?')
     messagebox.showinfo('Information', 'Finished')

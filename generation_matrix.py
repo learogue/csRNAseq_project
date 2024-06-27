@@ -1,4 +1,5 @@
 import glob
+import re
 import pandas as pd
 
 def generation_matrix(path):
@@ -26,9 +27,9 @@ def generation_matrix(path):
     merged_df = pd.DataFrame()
 
     # Browse each file in the directory and merge data
-    for file in glob.glob('Data/' + path + '/*.tabular'):
+    for file in glob.glob('Data/' + path + '/*.tab*'):
         # Extract cell name from file path (assuming it follows the format 'Data/path/cell_name.tabular')
-        cell_name = file.replace('\\', '/').split('/')[2].replace('.tabular', '')
+        cell_name = re.split(r'[/\\]', file)[2].replace('.tabular', '')
         
         # Read the count file into a DataFrame
         df = pd.read_table(file, sep = '\t', header = None, names = ['gene_id', cell_name])
