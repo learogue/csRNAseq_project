@@ -95,5 +95,5 @@ At the beginning, a window appear and show folders in Processing. Here, you can 
   
 ## Notes
 
-- Ensure all necessary scripts (`generation_matrix.py`, `create_anndata_object.py`, `apply_filters.py`, `merge.py` and `main.py`) are available in the script directory.
+- A detailled tutorial is available in folder Tutorial
 
