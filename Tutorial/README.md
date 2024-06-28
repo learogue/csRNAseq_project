@@ -3,7 +3,7 @@
 Here, I explain in details all the steps on this little program.
 
 ## Menu
-When you execute `main.py`, a first window will be open to inform you to choose a working folder. Click on OK
+When you execute `main.py`, a first window will open to inform you to choose a working folder. Click on OK
 
 ![1st window](Images_tutorial/1.png)
 
