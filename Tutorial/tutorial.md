@@ -7,7 +7,6 @@ When you execute `main.py`, a first window will be open to inform you to choose 
 ![1st window](Images_tutorial/1.png)
 
 Then, here you can choose a working directory or create one by clicking on the icon in top right (red arrow), enter a name and type enter on your keyboard and then select this new folder and click on **Open**.
-
 ![Menu](Images_tutorial/2.png)
 
 After, the Menu window appears and here youi can choose 1 or all tasks and click on **Select**.
