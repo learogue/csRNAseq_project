@@ -94,9 +94,11 @@ Information window:
 ![Window 20](Images_tutorial/23.png)
 
 You choose objects you want to merge.
+
 ![Window 21](Images_tutorial/24.png)
 
 Step finished.
+
 ![Window 22](Images_tutorial/25.png)
 
 ## Create UMAPs
