@@ -36,7 +36,7 @@ Object files will be in the working directory select or create at the begining i
 
 ![Window 6](Images_tutorial/11.png)
 
-  ![NOTE] 
-  You can read .h5ad file with Seurat if you use also this packages in R.
+  > ![NOTE] 
+  > You can read .h5ad file with Seurat if you use also this packages in R.
 
 
