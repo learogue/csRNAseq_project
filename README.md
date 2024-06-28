@@ -16,7 +16,6 @@ They also use packages tkfilebrowser and pywin32 (if you have Windows).
   pip install louvain
   pip install tkfilebrowser
   pip install pywin32
-  
 ```
 
 ## Contents
@@ -25,7 +24,7 @@ They also use packages tkfilebrowser and pywin32 (if you have Windows).
 - `gene_names.tab`: ouput of `extraction_gene_name.sh` (in the folder Appendix scripts) with in column 1 gene ids and column 2 gene names
 - `create_anndata_object.py`: function to create anndata object to stock datas, generate a violin plot
 - `create_umaps.py`: function to create umaps
-- `generation_matrix.py`: function to create counts matrix from datasets with 1 cell per file, with columns represent cells and rows corespond to genes
+- `generation_matrix.py`: function to create counts matrix from datasets with 1 cell per file, with columns represent cells and rows corespond to genes, use `gene_names.tab`
 - `main.py`: main script which call function and interact with the user
 - `merge.py`: function to merge multiple anndata object, so it merged datasets, use `apply_filters.py`, `create_anndata_object.py`, `generation_matrix.py`, `main.py`, `merge.py`
 
@@ -37,6 +36,7 @@ This script interacts with the user to process and analyze single-cell RNA seque
 
 You have to put your datas in a folder named Data, and named the folder X_datasetname_10X (for 10X format) or X_datasetname_counts (for matrix format) with X a number. 
 If you use VS code, you can Open Folder to be in the right folder. Execute `main.py` script and follow the processus to select the desired operation.
+
 ```
   python .\main.py
 ```
