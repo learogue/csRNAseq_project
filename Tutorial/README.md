@@ -18,7 +18,7 @@ After, the Menu window appears and here you can choose one or few or all tasks a
 ## Smart-seq2 format
 
 ### Generate matrix
-If you have check **Smart-seq2 format**, an information window will open to explain to choose folder(s) (_counts) to create a matrix if you have one file per cell, otherwise if you already have matrix, select nothing and click on Cancel on the next window and the processing will continue. This create a matrix with the number and the name of the counts folder in `Data`.
+If you have checked **Smart-seq2 format**, an information window will open to explain to choose folder(s) (_counts) to create a matrix if you have one file per cell, otherwise if you already have matrix, select nothing and click on Cancel on the next window and the processing will continue. This create a matrix with the number and the name of the counts folder in `Data`.
 
  >[!WARNING]
  > If you already have a matrix, it have to have genes names in rows and barcodes/cell ID in columns. If you have genes IDs, you can use `modify_ids_names.py` and enter at the beginning of the script the name of your input file and the output name like this: **matrix_Number_Author.tab**.
@@ -58,7 +58,7 @@ Then, you choose 1 or more 10X folders and like Smart-seq2 creating objects, it 
 ![Window 11](Images_tutorial/14.png)
 
 ## Apply filters
-If you have check **Apply filters**, this step will add filters on objects already created.
+If you have checked **Apply filters**, this step will add filters on objects already created.
 Information window will open.
 
 ![Window 12](Images_tutorial/15.png)
@@ -81,14 +81,14 @@ And it will be ask you if you want to save this filtered object.
 
 If yes, it save the object (`object_X_xxx_filtered_Y`), generates a violin plot with parameters in the name of file, generates also a log file `filters_applied.tab` with parameters and number of genes and cells before and after filters.
 
-If you have select multiple objects these previous step will be repeated per object.
+If you have selected multiple objects these previous step will be repeated per object.
 
 Information window:
 
 ![Window 19](Images_tutorial/22.png)
 
 ## Merge objects
-If you have check **Merge objects**, here it merge objects on genes. The best is to not take a already merge objects with a one dataset objects because it may be miss some genes or done errors.
+If you have checked **Merge objects**, here it merge objects on genes. The best is to not take a already merge objects with a one dataset objects because it may be miss some genes or done errors.
 Information window:
 
 ![Window 20](Images_tutorial/23.png)
@@ -100,7 +100,7 @@ Step finished.
 ![Window 22](Images_tutorial/25.png)
 
 ## Create UMAPs
-If you have check **Create UMAPs**, this step generates UMAPs with an object. Need a list of genes in folder `Analysis/` with one gene per line to create UMAPs with markers. This part use _Harmonypy_ to reduce batch effect of differents datasets. Harmony use an iterative method which adjust datas positions in reduce dimension (PCA) to correct batch effect but preserving biological variations. Harmony continue its iterations until adjustements converge.
+If you have checked **Create UMAPs**, this step generates UMAPs with an object. Need a list of genes in folder `Analysis/` with one gene per line to create UMAPs with markers. This part use _Harmonypy_ to reduce batch effect of differents datasets. Harmony use an iterative method which adjust datas positions in reduce dimension (PCA) to correct batch effect but preserving biological variations. Harmony continue its iterations until adjustements converge.
 
 Information window to start the step.
 
