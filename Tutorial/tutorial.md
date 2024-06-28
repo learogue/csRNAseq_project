@@ -19,7 +19,7 @@ After, the Menu window appears and here youi can choose 1 or all tasks and click
 
 ### Generate matrix
 If you have check Smart-seq2 format, an information window will open to explain you to Choose folder(s) (_counts) to create a matrix if you have one file per cell, otherwise if you already have matrix, select nothing and click on Cancel on the next window and the processing will continue. This create a matrix with the number and the name of the counts folder in `Data`.
-**Warning** your matrix have to have genes names in rows and barcodes/cell ID in columns. If you have genes IDs, you can use `modify_ids_names.py` and enter at the beginning of the script the name of your input file and the output name like this: **matrix_Number_Author.tab**.
+**Warning** Your matrix have to have genes names in rows and barcodes/cell ID in columns. If you have genes IDs, you can use `modify_ids_names.py` and enter at the beginning of the script the name of your input file and the output name like this: **matrix_Number_Author.tab**.
 
 ![Window 2](Images_tutorial/4.png) ![Window 3](Images_tutorial/6.png)![Window 4](Images_tutorial/7.png)
 
@@ -37,6 +37,16 @@ Object files will be in the working directory select or create at the begining i
 ![Window 6](Images_tutorial/11.png)
 
   > [!NOTE] 
-  > You can read .h5ad file with Seurat if you use also this packages in R.
+  > You can read `.h5ad` file with Seurat if you use also this packages in R.
+
+## 10X format : Create objects
+If you have check 10X format, you have to put the 3 files in a folder named for exemple `4_Nowo_10X` which contain `barcodes.tsv`, `genes.tsv` and `matrix.mtx`.
+Information window will open
+
+![Window 7](Images_tutorial/12.png)
+
+Then, you choose 1 or more 10X folders and like Smart-seq2 creating objects, it will generate an object and a violin plot.
+
+![Window 8](Images_tutorial/13.png)![Window 9](Images_tutorial/13.png)
 
 
