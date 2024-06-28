@@ -147,3 +147,7 @@ Here, program asks if you want to create others UMAPs (avoid to lauch at each ti
 Program finished:
 
 ![Window 32](Images_tutorial/34.png)
+
+## Following steps
+
+Next step of analysis is renaming clusters thanks to marker genes and there is no standard and it depends on many things so it's very difficult to make that automatic, it's easier for you to continue your analysis with your own command lines.
