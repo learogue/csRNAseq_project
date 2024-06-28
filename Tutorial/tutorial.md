@@ -86,32 +86,60 @@ Information window:
 ![Window 19](Images_tutorial/22.png)
 
 ## Merge objects
+If you have check **Merge objects**, here it merge objects on genes. The best is to not take a already merge objects with a one dataset objects because it may be miss some genes or done errors.
+Information window:
 
 ![Window 20](Images_tutorial/23.png)
 
+You choose objects you want to merge.
 ![Window 21](Images_tutorial/24.png)
 
+Step finished.
 ![Window 22](Images_tutorial/25.png)
 
-
-
 ## Create UMAPs
+If you have check **Create UMAPs**, this step generates UMAPs with an object. Need a list of genes in folder `Analysis/` with one gene per line to create UMAPs with markers. This part use _Harmonypy_ to reduce batch effect of differents datasets. Harmony use an iterative method which adjust datas positions in reduce dimension (PCA) to correct batch effect but preserving biological variations. Harmony continue its iterations until adjustements converge.
+
+Information window to start the step.
+
 ![Window 23](Images_tutorial/26.png)
+
+Select **1** object.
 
 ![Window 24](Images_tutorial/27.png)
 
+Enter the harmony parameters (theta and number of cluster) (see https://www.nature.com/articles/s41592-019-0619-0#citeas for more precision). 
+Theta is a regularization parameter that adjusts the strength of the batch effects correction. The higher the theta value, the stricter the correction, which can lead to better homogeneity between batches, but also to a risk of over-correction, where relevant biological variations may be lost. Conversely, a lower theta value means a less aggressive correction, which can preserve more biological variations but also leave batch effects.
+
 ![Window 25](Images_tutorial/28.png)
+
+The number of cluster (nclust) represent the number of clusters use by Harmony to regroup datas at the begining of crrection process and adjsut this initail clusters to correct batch effects. Too few clusters (low nclust) can lead to over-correction, where significant biological variations are mitigated because separate data groups are improperly merged. Too many clusters (high nclust value) can lead to under-correction, where batch effects are not sufficiently mitigated because the data is aggregated too thinly.
+
+  > [!NOTE] 
+  > If you want to modify more precise parameters you can modify others precise parameters (number of neighbors and number of PCs) or to see PCA plot and Elbow plot. At the begining of `create_umaps.py`, there are variables which can be modify (you don't need to modify in the command lines)
 
 ![Window 26](Images_tutorial/29.png)
 
+Information window to guide you.
+
 ![Window 27](Images_tutorial/30.png)
+
+Select the list gene file.
 
 ![Window 28](Images_tutorial/31.png)
 
+Step finished. So the program creates 2 UMAPs in `Analysis/worjing_dir/`, one for show different datasets and louvain (clustering) and the second with gene list for expression. It also generates a log file to trace all the parameters.
+
 ![Window 29](Images_tutorial/32.png)
+
+Information:
 
 ![Window 30](Images_tutorial/32.png)
 
+Here, program asks if you want to create others UMAPs (avoid to lauch at each time). If yes, it remake precedent step. If no, finished the program 
+
 ![Window 31](Images_tutorial/33.png)
+
+Program finished:
 
 ![Window 32](Images_tutorial/34.png)
