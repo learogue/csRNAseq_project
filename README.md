@@ -25,6 +25,9 @@ You can also use conda thanks to the yaml file.
 ```
   conda env create -n scrnaseqint --file scrnaseqint.yaml
 ```
+>[!NOTE]
+>It's possible that when you execute `main.py`, an error like `_tkinter.TclError: Item ... already exists`, you can refere here : https://github.com/hwstar/BOMtools/issues/2
+
 
 ## Contents
 
