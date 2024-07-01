@@ -8,7 +8,7 @@ You have to download these directory and put your datas in a directory named **D
 >[!IMPORTANT]
 >If you don't respect named of Data folder, it will not working.
 
-These scripts use multiple packages. For installing, you can use these command lines in your terminal (on vs code terminal for exemple)
+These scripts use multiple packages. For installing, you can use these command lines in your terminal (on vs code terminal for exemple) or you can use conda (see below).
 They also use packages pywin32 (**only if you have Windows**).
 Use Python version >= 3.11
 
@@ -21,9 +21,14 @@ Use Python version >= 3.11
   pip install pywin32
 ```
 
+You can also use conda thanks to the yaml file.
+```
+  conda env create -n scrnaseqint --file scrnaseqint.yaml
+```
+
 ## Contents
 
-- `apply_filters.py`: function to apply filters on anndata object on the minimum of genes per cell, the minimum of cells per genes and the maximum of % mitochondrial genes, generate a violin plot and ask the user if he want to save the filtered object (_filterd.h5ad)
+- `apply_filters.py`: function to apply filters on anndata object on the minimum of genes per cell, the minimum of cells per genes and the maximum of % mitochondrial genes, generate a violin plot and ask the user if he want to save the filtered object (_filterd_X.h5ad)
 - `create_anndata_object.py`: function to create anndata object to stock datas, generate a violin plot
 - `create_umaps.py`: function to create umaps
 - `gene_names.tab`: ouput of `extraction_gene_name.sh` (in the folder Appendix scripts) with in column 1 gene ids and column 2 gene names
@@ -41,7 +46,7 @@ You have to put your datas in a folder named Data, and named the folder X_datase
 If you use VS code, you can Open Folder to be in the right folder. Execute `main.py` script and follow the processus to select the desired operation.
 
 ```
-  python .\main.py
+  python main.py
 ```
 
 ## Main Menu Options
