@@ -5,7 +5,8 @@ Internship project to integrate differents datasets of single-cell RNA-seq. Thes
 ## Installation and Requirements
 
 You have to download these directory and put your datas in a directory named **Data**. For format Smart_seq, named a dir **NumberOfDataset_Author_counts** and for 10X, **NumberOfDataset_Author_10X**. See the scheme below which explained the required organisation of the directory.
-[!IMPORTANT] If you don't respect named of Data folder, it will not working.
+>[!IMPORTANT]
+>If you don't respect named of Data folder, it will not working.
 
 These scripts use multiple packages. For installing, you can use these command lines in your terminal (on vs code terminal for exemple)
 They also use packages pywin32 (**only if you have Windows**).
