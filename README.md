@@ -91,7 +91,7 @@ At the beginning, a window appear and show folders in Processing. Here, you can 
 ### Merging Objects
 
   - Displays objects folder
-  - Choose one or more objects to merge (the best is to merge one object by one, not an already merge with another because the script take all genes)
+  - Choose one or more objects to merge (the best is to merge one object by one, not an already merge with another because the script take all genes and some genes can miss if you merged an alredy merge object with an other moreover it gives errors because of 0)
   - Merges objects using the `merge` function from the `merge.py` script and saves the merged object with the names of all included objects in the filename (e.g., `object_1_Deng_filtered_2_Chen_filtered_3_Mohammed_filtered_4_Nowo_merged_6_Posfai_filtered_10_Arg_filtered.h5ad`).
 
 ### Create UMAPs
