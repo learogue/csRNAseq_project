@@ -1,6 +1,6 @@
 # Appendix scripts
 
-The script `extraction_gene_name.sh` take gene ids and gene names from gtf format (example below), and generates one tab file with in column 1 the gene ids and column 2 gene names.
+The script `extraction_gene_name.sh` take Ensembl gene ids and gene names from gtf format (example below), and generates one tab file with in column 1 the gene ids and column 2 gene names.
 ```
 ##gff-version2
 ##source-versionrtracklayer1.58.0
