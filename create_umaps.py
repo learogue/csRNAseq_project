@@ -28,6 +28,8 @@ def create_umaps(obj, dir):
             It creates 2 UMAPs : one for datasets and louvain, the second with list of genes
             Generate a log file (umap_parameters.tab) containing information on the UMAP (parameters ...)
     """
+    sc.settings.set_figure_params(dpi=150, facecolor='white', fontsize=12)
+    
     # Ensure the 'Analysis' directory and the specific analysis directory exist
     if not os.path.isdir('Analysis'):
         os.mkdir('Analysis')
