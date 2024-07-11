@@ -79,7 +79,7 @@ And it will be ask you if you want to save this filtered object.
 
 ![Window 18](Images_tutorial/21.png)
 
-If yes, it save the object (`object_X_xxx_filtered_Y`), generates a violin plot with parameters in the name of file, generates also a log file `filters_applied.tab` with parameters and number of genes and cells before and after filters.
+If yes, it save the object (`object_X_xxx_filtered_Y.h5ad`), generates a violin plot with parameters in the name of file, generates also a log file `filters_applied.tab` with parameters and number of genes and cells before and after filters.
 
 If you have selected multiple objects these previous step will be repeated per object.
 
