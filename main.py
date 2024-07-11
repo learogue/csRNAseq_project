@@ -65,7 +65,7 @@ checkbox4 = tk.Checkbutton(root, text = 'Merge objects', variable = var4)
 checkbox5 = tk.Checkbutton(root, text = 'Create umaps', variable = var5)
 
 # Position the checkboxes and labels
-label.pack()                # Add the label to the window
+label.pack()                 # Add the label to the window
 label2.pack(ancho = tk.W)    # Use anchor to align the button
 checkbox1.pack()  
 checkbox2.pack()
