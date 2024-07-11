@@ -150,4 +150,4 @@ Program finished:
 
 ## Following steps
 
-Next step of analysis is renaming clusters thanks to marker genes and there is no standard and it depends on many things so it's very difficult to make that automatic, it's easier for you to continue your analysis with your own command lines.
+Next step of analysis is renaming clusters thanks to marker genes and there is no standard and it depends on many things so it's very difficult to make that automatic, it's easier for you to continue your analysis with your own command lines in a notebook for exemple (you can see exemples in the git https://github.com/learogue/Results_scRNAseq_m1_internship).
