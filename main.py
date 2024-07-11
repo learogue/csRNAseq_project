@@ -10,8 +10,6 @@ from merge import *
 from create_umaps import *
 
 # Create directories if they don't exist
-if not os.path.isdir('Data_matrix_Smart_seq2'):
-    os.mkdir('Data_matrix_Smart_seq2')
 if not os.path.isdir('Processing'):
     os.mkdir('Processing')
 
@@ -19,7 +17,7 @@ if not os.path.isdir('Processing'):
 root = tk.Tk()
 root.withdraw()  # To not display the main window
 messagebox.showinfo('Information', 'Choose one directory for processing data or create one (icon in top right, write the name and enter). Click on OK to continue.')
-processing_dir = tkfilebrowser.askopendirname(initialdir = 'Processing/', title = 'Choose working directory or create it')
+processing_dir = tkfilebrowser.askopendirname(initialdir = 'Processing', title = 'Choose working directory or create it')
 root.destroy()
 
 # Create the user-specified subdirectories for Objects and Plots
@@ -106,7 +104,7 @@ if 1 in selected_options:
     root = tk.Tk()
     root.withdraw()
     messagebox.showinfo('Information', 'Choose one or more matrix to create an object')
-    l_file = list(tkfilebrowser.askopenfilenames(initialdir = 'Data_matrix_Smart_seq2/', title = 'Choose directories for Smart-seq2'))
+    l_file = list(tkfilebrowser.askopenfilenames(initialdir = 'Data/', title = 'Choose directories for Smart-seq2'))
 
     # Create Anndata objects for each specified matrix file
     for file in l_file:

@@ -43,7 +43,7 @@ def create_anndata_object(source, data_type, output_dir):
         # Create file names and paths
         name = source.replace('matrix_', '').replace('.tab', '')
         name_object = source.replace('matrix', 'object').replace('.tab', '_ori.h5ad')
-        input_path = f'Data_matrix_Smart_seq2/{source}'
+        input_path = f'Data/{source}'
 
     # Create a directory for plots if it doesn't exist
     plot_dir = output_dir + f'/Plots/Plots_{name}'

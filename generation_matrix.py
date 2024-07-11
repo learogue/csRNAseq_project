@@ -15,7 +15,7 @@ def generation_matrix(path):
                 ENSMUSG00000025903 115
 
     Output:
-        Matrix with all cells of the dataset in Data_matrix_Smart_seq2, format tabular
+        Matrix with all cells of the dataset in Data, format tabular
             gene_name  SRR805347  SRR805348  SRR805349  SRR805350  SRR805351  SRR805352
             Gnai3      1149       983        2556       1171       2123       1119
             Pbsn       0          0          0          0          0          0
@@ -50,5 +50,5 @@ def generation_matrix(path):
     # Delete the 'gene_id' column as it's no longer needed
     del merged_df['gene_id']
 
-    # Save the final merged DataFrame to a tab-separated file in the Data_matrix_Smart_seq2 directory
-    merged_df.to_csv('Data_matrix_Smart_seq2/' + name_file, sep = '\t', index = False)
+    # Save the final merged DataFrame to a tab-separated file in the Data directory
+    merged_df.to_csv('Data/' + name_file, sep = '\t', index = False)
