@@ -112,7 +112,7 @@ Select **1** object.
 
 ![Window 24](Images_tutorial/27.png)
 
-Enter the harmony parameters (theta and number of cluster) (see https://www.nature.com/articles/s41592-019-0619-0#citeas for more precision). 
+Enter the harmony parameters (theta and number of cluster) (see https://www.nature.com/articles/s41592-019-0619-0 for more precision). 
 Theta is a regularization parameter that adjusts the strength of the batch effects correction. The higher the theta value, the stricter the correction, which can lead to better homogeneity between batches, but also to a risk of over-correction, where relevant biological variations may be lost. Conversely, a lower theta value means a less aggressive correction, which can preserve more biological variations but also leave batch effects.
 
 ![Window 25](Images_tutorial/28.png)
