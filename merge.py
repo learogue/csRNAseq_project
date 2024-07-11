@@ -1,4 +1,5 @@
 import anndata as ad
+import os
 
 def merge(l, output_dir):
     """
@@ -11,14 +12,18 @@ def merge(l, output_dir):
     Output:
         Merged AnnData object saved as object_all-the-datasets.h5ad in the Objects/ directory.
     """
-    # Construct the name for the merged object by concatenating parts of the individual object names
-    l_mid = l[1:-1]  # All but the first and last elements in the list
-    nw_l = ''
-    for i in range(len(l_mid)): 
-        nw_l += l_mid[i].replace('.h5ad', '').replace('object', '')
+    # Ensure traceability by creating a log file if it doesn't exist
+    if not os.path.exists(output_dir + '/Objects/objects_merged.tab'):
+        with open(output_dir + '/Objects/objects_merged.tab', 'a') as f:
+            # Write the header to the log file
+            f.write('object_number' + '\t' + 'objects_selected' + '\n')
 
-    # Create the final object name by combining the first, middle, and last parts
-    obj_name = l[0].replace('.h5ad', '') + nw_l + l[-1].replace('object', '')
+    # Generate a unique filename for the object
+    a = 1
+    obj_name = 'object_merged_1.h5ad'
+    while os.path.exists(output_dir + '/Objects/' + obj_name):
+        a += 1
+        obj_name = f'object_merged_{a}.h5ad'
 
     # Initialize dictionaries and lists to store AnnData objects
     d_adata = {}
@@ -33,8 +38,9 @@ def merge(l, output_dir):
     # Merge all AnnData objects using an outer join to include all genes
     adata_merge = ad.concat(l_adata, join = 'outer')
 
-    # Uncomment the following lines if you want to create a violin plot of the merged object
-    # sc.pl.violin(adata_merge, ["n_genes_by_counts", "total_counts", "pct_counts_mt"], jitter = 0.4, size = 1.6, multi_panel = True)
-
     # Save the merged AnnData object to the specified directory
     adata_merge.write(output_dir + '/Objects/' + obj_name)
+
+    # Append object information to the log file
+    with open(output_dir + '/Objects/objects_merged.tab', 'a') as f:
+        f.write(f'object_merged_{a}' + '\t' + ' '.join(l) + '\n')
