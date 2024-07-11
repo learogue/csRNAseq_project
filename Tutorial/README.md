@@ -43,7 +43,7 @@ Object files will be in the working directory select or create at the begining i
 ![Window 8](Images_tutorial/11.png)
 
   > [!NOTE] 
-  > You can read `.h5ad` file with Seurat if you use also this packages in R.
+  > You can read `.h5ad` file with Seurat if you use also this package in R.
 
 ## 10X format : Create objects
 If you have check **10X format**, you have to put the 3 files in a folder named for exemple `4_Nowo_10X` which contain `barcodes.tsv`, `genes.tsv` and `matrix.mtx`.
