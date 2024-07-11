@@ -1,6 +1,6 @@
 # Tutorial
 
-Here, I explain in details all the steps on this little program.
+Here, I explain in details all the steps on this program.
 
 ## Menu
 When you execute `main.py`, a first window will open to inform you to choose a working folder. Click on OK
