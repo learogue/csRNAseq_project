@@ -36,7 +36,7 @@ The next step is creating object from the matrix. An information window will ope
 
 After, you select 1 or more matrix to create objects to pourchase processing and analysis.
 
-![Window 7](Images_tutorial/Capture2.png)
+![Window 7](Images_tutorial/10bis.png)
 
 Object files will be in the working directory select or create at the begining in `Objects/` with the name `object_X_xxx_ori.h5ad`. It also generate a violin plot in `working_dir/Plots/X_xxx/` to see quality metrics of the dataset.
 
