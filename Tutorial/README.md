@@ -134,8 +134,6 @@ Select the list gene file.
 
 Step finished. So the program creates 2 UMAPs in `Analysis/worjing_dir/`, one for show different datasets and louvain (clustering) and the second with gene list for expression. It also generates a log file to trace all the parameters.
 
-![Window 29](Images_tutorial/32.png)
-
 Information:
 
 ![Window 30](Images_tutorial/32.png)
