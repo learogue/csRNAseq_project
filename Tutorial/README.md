@@ -138,7 +138,7 @@ Information:
 
 ![Window 30](Images_tutorial/32.png)
 
-Here, program asks if you want to create others UMAPs (avoid to lauch at each time). If yes, it remake precedent step. If no, finished the program 
+Here, program asks if you want to save the object with clusters to find markers.
 
 ![Window 31](Images_tutorial/33.png)
 
