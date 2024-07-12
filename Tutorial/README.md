@@ -132,7 +132,7 @@ Select the list gene file.
 
 ![Window 28](Images_tutorial/31.png)
 
-Step finished. So the program creates 2 UMAPs in `Analysis/worjing_dir/`, one for show different datasets and louvain (clustering) and the second with gene list for expression. It also generates a log file to trace all the parameters.
+Step finished. So the program creates 2 UMAPs in `Analysis/working_dir/UMAPs`, one for show different datasets and louvain (clustering) and the second with gene list for expression. It also generates a log file to trace all the parameters.
 
 Information:
 
@@ -142,9 +142,23 @@ Here, program asks if you want to create others UMAPs (avoid to lauch at each ti
 
 ![Window 31](Images_tutorial/33.png)
 
-Program finished:
+Here, program asks if you want to create others UMAPs (avoid to lauch at each time). If yes, it remake precedent step. If no, finished the program 
 
 ![Window 32](Images_tutorial/34.png)
+
+![Window 33](Images_tutorial/37.png)
+
+## Find differentially expressed genes
+
+![Window 34](Images_tutorial/35.png)
+
+You select the object that you want to have the differentail expression
+
+![Window 35](Images_tutorial/36.png)
+
+Finished
+
+![Window 36](Images_tutorial/37.png)
 
 ## Following steps
 
