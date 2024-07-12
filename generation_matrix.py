@@ -52,3 +52,6 @@ def generation_matrix(path):
 
     # Save the final merged DataFrame to a tab-separated file in the Data directory
     merged_df.to_csv('Data/' + name_file, sep = '\t', index = False)
+
+    print('Done')
+    

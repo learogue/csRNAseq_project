@@ -35,6 +35,8 @@ def create_umaps(obj, dir):
         os.mkdir('Analysis')
     if not os.path.isdir('Analysis/' + dir):
         os.mkdir('Analysis/' + dir)
+    if not os.path.isdir('Analysis/' + dir + '/UMAPs'):
+        os.mkdir('Analysis/' + dir + '/UMAPs')
 
     # Tkinter root window for input dialog
     root = tk.Tk()
@@ -42,6 +44,7 @@ def create_umaps(obj, dir):
 
     # User inputs for the UMAP parameters
     theta = simpledialog.askstring('Input', 'Enter the theta (None/1/2/...):')
+    
     # Convert theta to appropriate type to avoid errors with harmony
     if theta == 'None':
         theta = None
@@ -67,7 +70,7 @@ def create_umaps(obj, dir):
             l_gene.append(lig)
     
     # Read the AnnData object
-    adata = ad.read_h5ad('Processing/' + dir + '/Objects/' + obj)
+    adata = ad.read_h5ad('Processing/' + dir + '/Objects/Objects_merged/' + obj)
 
     # Normalize the data
     sc.pp.normalize_total(adata, target_sum = 1e4)
@@ -111,8 +114,8 @@ def create_umaps(obj, dir):
     sc.tl.umap(adata)
 
     # Ensure traceability by creating a log file if it doesn't exist
-    if not os.path.exists('Analysis/' + dir + '/umaps_parameters.tab'):
-        with open('Analysis/' + dir + '/umaps_parameters.tab', 'a') as f:
+    if not os.path.exists('Analysis/' + dir + '/UMAPs/umaps_parameters.tab'):
+        with open('Analysis/' + dir + '/UMAPs/umaps_parameters.tab', 'a') as f:
             # Get the current date and time
             date = datetime.now()
             date_str = date.strftime('%Y-%m-%d %H:%M:%S')
@@ -123,28 +126,40 @@ def create_umaps(obj, dir):
     # Generate a unique filename for the UMAP datasets Louvain plot
     i = 1
     name_umap_datasets_louvain = 'umap_datasets_louvain_1.pdf'
-    while os.path.exists('Analysis/' + dir + '/' + name_umap_datasets_louvain):
+    while os.path.exists('Analysis/' + dir + '/UMAPs/' + name_umap_datasets_louvain):
         i += 1
         name_umap_datasets_louvain = f'umap_datasets_louvain_{i}.pdf'
 
     # Plot and save the UMAP datasets Louvain plot
     with plt.rc_context():
         sc.pl.umap(adata, color=['dataset', 'louvain'], show=False)
-        plt.savefig('Analysis/' + dir + '/' + name_umap_datasets_louvain)
+        plt.savefig('Analysis/' + dir + '/UMAPs/' + name_umap_datasets_louvain)
 
     # Generate a unique filename for the UMAP genes plot
     i = 1
     name_umap_genes = 'umap_genes_1.pdf'
-    while os.path.exists('Analysis/' + dir + '/' + name_umap_genes):
+    while os.path.exists('Analysis/' + dir + '/UMAPs/' + name_umap_genes):
         i += 1
         name_umap_genes = f'umap_genes_{i}.pdf'
 
     # Plot and save the UMAP genes plot
     with plt.rc_context():
         sc.pl.umap(adata, color=l_gene, color_map=mpl.cm.Reds, show=False)
-        plt.savefig('Analysis/' + dir + '/' + name_umap_genes)
+        plt.savefig('Analysis/' + dir + '/UMAPs/' + name_umap_genes)
 
     # Append filter information to the log file
-    with open('Analysis/' + dir + '/umaps_parameters.tab', 'a') as f:
+    with open('Analysis/' + dir + '/UMAPs/umaps_parameters.tab', 'a') as f:
         f.write(f'umap_{i}' + '\t' + dir + '/Objects/' + obj + '\t' + str(theta) + 
                 '\t' + str(nclust) + '\t' + str(resolution) + '\t' + str(n_neighbors) + '\t' + str(n_pcs) + '\n')
+
+    # Ask the user if they want to save the AnnData object
+    save = messagebox.askyesno('Save processed Object', 'Do you want to save the new object processed (mandatory for find differentially expressed genes per cluster)? It will create a file object_processed_X.h5ad with the same number as the UMAP file')
+    if save:
+        # Create folder
+        if not os.path.isdir('Processing/' + dir + '/Objects/Objects_clusters'):
+            os.mkdir('Processing/' + dir + '/Objects/Objects_clusters')        
+        
+        # Save the filtered AnnData object
+        adata.write('Processing/' + dir + '/Objects/Objects_clusters/' + f'object_clusters_{i}.h5ad')
+
+    print('Done')

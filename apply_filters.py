@@ -22,9 +22,13 @@ def apply_filters(file, output_dir):
         If user wants to save the filtered data: AnnData object with _filtered_X suffix
         Generate a log file (filters_applied.tab) containing information on the filters applied
     """
+    # Create folder
+    if not os.path.isdir(output_dir + '/Objects/Objects_filtered'):
+        os.mkdir(output_dir + '/Objects/Objects_filtered')    
+    
     # Ensure traceability by creating a log file if it doesn't exist
-    if not os.path.exists(output_dir + '/filters_applied.tab'):
-        with open(output_dir + '/filters_applied.tab', 'a') as f:
+    if not os.path.exists(output_dir + '/Objects/Objects_filtered/filters_applied.tab'):
+        with open(output_dir + '/Objects/Objects_filtered/filters_applied.tab', 'a') as f:
             # Get the current date and time
             date = datetime.now()
             date_str = date.strftime('%Y-%m-%d %H:%M:%S')
@@ -36,7 +40,7 @@ def apply_filters(file, output_dir):
     name = file.replace('object_', '').replace('_ori.h5ad', '')
 
     # Read the AnnData object from the file
-    adata = ad.read_h5ad(os.path.join(output_dir, 'Objects', file))
+    adata = ad.read_h5ad(output_dir + '/Objects/Objects_ori/' + file)
 
     # Print the name of the object and the number of cells and genes before applying filters
     nb_cells_before = adata.n_obs
@@ -79,14 +83,16 @@ def apply_filters(file, output_dir):
         # Generate a unique filename for the filtered AnnData object
         i = 1
         name_file_output = file.replace('ori.h5ad', 'filtered_1.h5ad')
-        while os.path.exists(os.path.join(output_dir, 'Objects', name_file_output)):
+        while os.path.exists(output_dir + '/Objects/Objects_filtered/' + name_file_output):
             i += 1
             name_file_output = file.replace('ori.h5ad', f'filtered_{i}.h5ad')
         
         # Save the filtered AnnData object
-        adata.write(os.path.join(output_dir, 'Objects', name_file_output))
+        adata.write(output_dir + '/Objects/Objects_filtered/' + name_file_output)
 
         # Append filter information to the log file
-        with open(output_dir + '/filters_applied.tab', 'a') as f:
+        with open(output_dir + '/Objects/Objects_filtered/filters_applied.tab', 'a') as f:
             f.write(name_file_output + '\t' + str(nb_cells_before) + '\t' + str(nb_genes_before) + 
                     '\t' + str(min_genes) + '\t' + str(min_cells) + '\t' + str(pct_mt) + '\t' + str(adata.n_obs) + '\t' + str(adata.n_vars) + '\n')
+
+    print('Done')

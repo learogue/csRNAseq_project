@@ -50,6 +50,9 @@ def create_anndata_object(source, data_type, output_dir):
     if not os.path.isdir(plot_dir):
         os.mkdir(plot_dir)
 
+    if not os.path.isdir(output_dir + '/Objects/Objects_ori'):
+        os.mkdir(output_dir + '/Objects/Objects_ori')
+
     # Reading the data
     if data_type == '10X':
         adata = sc.read_10x_mtx(input_path) # Read 10X data
@@ -75,6 +78,6 @@ def create_anndata_object(source, data_type, output_dir):
         plt.savefig(f'{plot_dir}/violin_plot.pdf', bbox_inches = 'tight')
 
     # Save the AnnData object to a file
-    adata.write(output_dir + f'/Objects/{name_object}')
+    adata.write(output_dir + f'/Objects/Objects_ori/{name_object}')
 
     print('Done')

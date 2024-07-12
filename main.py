@@ -8,6 +8,7 @@ from create_anndata_object import *
 from apply_filters import *
 from merge import *
 from create_umaps import *
+from find_DEG import *
 
 # Create directories if they don't exist
 if not os.path.isdir('Processing'):
@@ -28,7 +29,7 @@ if not os.path.isdir(processing_dir + '/Plots'):
 
 # Create the graphical interface
 root = tk.Tk()
-root.geometry('300x250')
+root.geometry('300x280')
 root.title('Select')
 
 # Variables for the checkboxes
@@ -37,6 +38,7 @@ var2 = tk.BooleanVar()
 var3 = tk.BooleanVar()
 var4 = tk.BooleanVar()
 var5 = tk.BooleanVar()
+var6 = tk.BooleanVar()
 
 # Function called when the button is clicked
 selected_options = []
@@ -51,6 +53,8 @@ def on_button_click():
         selected_options.append(4)
     if var5.get():
         selected_options.append(5)
+    if var6.get():
+        selected_options.append(6)
     root.destroy()  # Close the main window
 
 # Create the checkboxes and labels
@@ -63,9 +67,10 @@ checkbox2 = tk.Checkbutton(root, text = '10X format', variable = var2)
 checkbox3 = tk.Checkbutton(root, text = 'Apply filters', variable = var3)
 checkbox4 = tk.Checkbutton(root, text = 'Merge objects', variable = var4)
 checkbox5 = tk.Checkbutton(root, text = 'Create umaps', variable = var5)
+checkbox6 = tk.Checkbutton(root, text = 'Find differentially expressed genes per cluster', variable = var6)
 
 # Position the checkboxes and labels
-label.pack()                 # Add the label to the window
+label.pack()                # Add the label to the window
 label2.pack(ancho = tk.W)    # Use anchor to align the button
 checkbox1.pack()  
 checkbox2.pack()
@@ -74,6 +79,7 @@ checkbox3.pack()
 checkbox4.pack()
 label4.pack(anchor = tk.W)
 checkbox5.pack()
+checkbox6.pack()
 
 # Button to get the selected options
 btn_get_selected = tk.Button(root, text = 'Select', command = on_button_click)
@@ -131,7 +137,7 @@ if 3 in selected_options:
     root = tk.Tk()
     root.withdraw()
     messagebox.showinfo('Information', 'Choose one or more object(s) to apply filters')
-    l_obj = list(tkfilebrowser.askopenfilenames(initialdir = processing_dir+'/Objects/', title = 'Choose objects to apply filters', filetypes = [('Files without filters','*_ori.h5ad')]))
+    l_obj = list(tkfilebrowser.askopenfilenames(initialdir = processing_dir+'/Objects/Objects_ori', title = 'Choose objects to apply filters'))
 
     # Apply filters to each specified Anndata object
     for obj in l_obj:
@@ -144,7 +150,7 @@ if 4 in selected_options:
     root = tk.Tk()
     root.withdraw()
     messagebox.showinfo('Information', 'Step of merging some object')
-    l_path_obj = list(tkfilebrowser.askopenfilenames(initialdir = processing_dir+'/Objects/', title = 'Choose objects for merging'))
+    l_path_obj = list(tkfilebrowser.askopenfilenames(initialdir = processing_dir+'/Objects/Objects_filtered/', title = 'Choose objects for merging'))
 
     # Take only the object name
     l_obj = []
@@ -161,16 +167,26 @@ if 5 in selected_options:
     root = tk.Tk()
     root.withdraw()
     messagebox.showinfo('Information', 'Step of creating UMAPs')
-    obj = tkfilebrowser.askopenfilename(initialdir = processing_dir+'/Objects/', title = 'Choose one object for UMAP')
+    obj = tkfilebrowser.askopenfilename(initialdir = processing_dir+'/Objects/Objects_merged/', title = 'Choose one object for UMAP')
     create_umaps(re.split(r'[/\\]', obj)[-1], re.split(r'[/\\]', processing_dir)[-1])
     messagebox.showinfo('Information', 'UMAP created')
 
     # Ask if the user wants to create another UMAP
     rep_loop = messagebox.askyesno('Create Another UMAP', 'Do you want to create another UMAP?')
     while rep_loop:
-        obj = tkfilebrowser.askopenfilename(initialdir = processing_dir+'/Objects/', title = 'Choose one object for UMAP')
+        obj = tkfilebrowser.askopenfilename(initialdir = processing_dir + '/Objects/Objects_merged/', title = 'Choose one object for UMAP')
         create_umaps(re.split(r'[/\\]', obj)[-1], re.split(r'[/\\]', processing_dir)[-1])
         messagebox.showinfo('Information', 'UMAP created')
         rep_loop = messagebox.askyesno('Create Another UMAP', 'Do you want to create another UMAP?')
+    messagebox.showinfo('Information', 'Finished')
+    root.destroy()
+
+# Find DEG
+if 6 in selected_options:
+    root = tk.Tk()
+    root.withdraw()
+    messagebox.showinfo('Information', 'Step of find differentially expressed genes per cluster')
+    obj = tkfilebrowser.askopenfilename(initialdir = processing_dir + '/Objects/Objects_clusters/', title = 'Choose one object to find markers')
+    find_DEG(re.split(r'[/\\]', obj)[-1], re.split(r'[/\\]', processing_dir)[-1])
     messagebox.showinfo('Information', 'Finished')
     root.destroy()
