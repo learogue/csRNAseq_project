@@ -5,15 +5,13 @@ import re
 
 def find_DEG(obj, dir):
     """
-    Create UMAPs from an object and save them. Need a list of genes which user have to create in dir Analysis with one gene per line.
+    Generates DEG table per clusters.
 
     Input:
         obj (str): Object selected by the user
         dir (str): Processing dir
 
-    Output: UMAPs in Analysis/name_dir_of_objects/
-            It creates 2 UMAPs : one for datasets and louvain, the second with list of genes
-            Generate a log file (umap_parameters.tab) containing information on the UMAP (parameters ...)
+    Output: DEG table in Analysis/name_dir_of_objects/DEG/
     """
     # Create folder
     if not os.path.isdir('Analysis/' + dir + '/DEG'):
