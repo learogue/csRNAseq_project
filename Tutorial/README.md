@@ -38,7 +38,7 @@ After, you select 1 or more matrix to create objects to pourchase processing and
 
 ![Window 7](Images_tutorial/9.png)
 
-Object files will be in the working directory select or create at the begining in `Objects/` with the name `object_X_xxx_ori.h5ad`. It also generate a violin plot in `working_dir/Plots/X_xxx/` to see quality metrics of the dataset.
+Object files will be in the working directory select or create at the begining in `Objects/Objects_ori` with the name `object_X_xxx_ori.h5ad`. It also generate a violin plot in `working_dir/Plots/X_xxx/` to see quality metrics of the dataset.
 
 ![Window 8](Images_tutorial/11.png)
 
@@ -79,7 +79,7 @@ And it will be ask you if you want to save this filtered object.
 
 ![Window 18](Images_tutorial/21.png)
 
-If yes, it save the object (`object_X_xxx_filtered_Y.h5ad`), generates a violin plot with parameters in the name of file, generates also a log file `filters_applied.tab` with parameters and number of genes and cells before and after filters.
+If yes, it save the object (`object_X_xxx_filtered_Y.h5ad`) in `/Objects/Objects_filtered`, generates a violin plot with parameters in the name of file, generates also a log file `filters_applied.tab` with parameters and number of genes and cells before and after filters.
 
 If you have selected multiple objects these previous step will be repeated per object.
 
@@ -97,7 +97,7 @@ You choose objects you want to merge.
 
 ![Window 21](Images_tutorial/24.png)
 
-Step finished.
+Step finished. It save the merged object in `Objects/Obects_merged` with a number and a log file containing information ont the object.
 
 ![Window 22](Images_tutorial/25.png)
 
@@ -138,11 +138,11 @@ Information:
 
 ![Window 30](Images_tutorial/32.png)
 
-Here, program asks if you want to save the object with clusters to find markers.
+Here, the program asks if you want to save the object with clusters to find markers.
 
 ![Window 31](Images_tutorial/33.png)
 
-Here, program asks if you want to create others UMAPs (avoid to lauch at each time). If yes, it remake precedent step. If no, finished the program 
+The program asks if you want to create others UMAPs (avoid to lauch at each time). If yes, it remake precedent step. If no, it finished the program.
 
 ![Window 32](Images_tutorial/34.png)
 
@@ -152,11 +152,11 @@ Here, program asks if you want to create others UMAPs (avoid to lauch at each ti
 
 ![Window 34](Images_tutorial/35.png)
 
-You select the object that you want to have the differentail expression
+You select the object that you want to have the differential expression.
 
 ![Window 35](Images_tutorial/36.png)
 
-Finished
+It find differentially expressed genes per cluster against others clusters from UMAPs and generates one table per cluster (e.g. `cluster_0.tab`) in `Analysis/folder_name_at_the_beginning/DEG/Object_clusters_X` with X the number of the corresponding UMAPs.
 
 ![Window 36](Images_tutorial/37.png)
 
